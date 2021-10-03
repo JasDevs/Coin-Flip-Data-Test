@@ -3,29 +3,28 @@ import time as t
 
 heads, tails = 0,0
 
-timesToTest = int(input("Coins to flip: "))
+times_to_test = int(input("Coins to flip: "))
 
-def coinToss():
-    global timesToTest
-    for _ in range(timesToTest): 
-        global heads,tails
-        value=r.randint(1,2)
-        if (value==1): 
-            heads+=1
+def coin_toss():
+    global heads, tails
+    for _ in range(times_to_test): 
+        value=bool(r.getrandbits(1))
+        if value == True: 
+            heads += 1
         else: 
-            tails+=1
+            tails += 1
 
-def displayData():
-    print("")
-    print(("|================|"))
-    print("Heads was flipped: ", "{:,}".format(heads),"time(s),",int(heads/timesToTest*100),"% of the time")
-    print("Tails was flipped: ", "{:,}".format(tails),"time(s),",int(tails/timesToTest*100),"% of the time")
-    print("|================|")
-    print("")
+def display_data():
+    print(f"""
+        |================|
+        Heads was flipped: {heads} times, {heads*100//(heads+tails)}% of the time
+        Tails was flipped: {tails} times, {tails*100//(heads+tails)}% of the time
+        |================|
+    """)
 
 while True:
-     coinToss()
-     displayData()
+     coin_toss()
+     display_data()
      heads,tails,value = 0,0,0
-     timesToTest = int(input("Coins to flip: "))
+     times_to_test = int(input("Coins to flip: "))
      
